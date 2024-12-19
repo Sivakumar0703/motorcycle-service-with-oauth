@@ -34,7 +34,7 @@ passport.serializeUser((user, done) => done(null, user._id));
 passport.deserializeUser(async(id, done) => {
   try {
     const user = await findUser(id);
-    // console.log("cookie parser",user)
+    console.log("cookie parser",user)
     done(null, user)
   } catch (error) {
     done(error, null)

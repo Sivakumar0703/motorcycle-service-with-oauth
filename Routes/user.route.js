@@ -1,7 +1,5 @@
 import express from "express";
 import { forgotPassword, getUser, getUserDataFromCookie, googleAuth, googleRedirect, login, logout, register, resetPassword, sendMail } from "../Controllers/user.controller.js";
-import googleAuthentication from "../Middlewares/google/auth.js";
-import getUserDataFromGoogle from "../Middlewares/google/getUserProfile.js";
 import passport from "passport";
 
 const userRouter = express.Router();

@@ -146,12 +146,12 @@ export const googleRedirect = async(req,res) => {
 
 // access user data from cookie and pass it to client(browser)
 export const getUserDataFromCookie = async(req,res) => {
+    // console.log("user",req.user);
+    // console.log("cookie",req.cookies)
     try {
-       const profile = req.user;
-    //    console.log("cookie",req.cookies)
-    //    console.log("session",req.session)
+       const profile = req.user;   
        if(!profile){
-        return res.status(500).json({message:"not able to find user data"});
+        return res.status(500).json({message:"not able to find user data..."});
        } 
        const user = {
         userName:profile.userName,
