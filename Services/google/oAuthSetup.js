@@ -12,7 +12,6 @@ passport.use(
     async function (accessToken, refreshToken, profile, done) {
       try {
       // after converting the code from google to actual data
-      // console.log("redirect callback")
       const user = await findOrCreateUser(profile);
       // console.log(profile.displayName, profile.emails[0].value, profile.id,user._id , profile.photos[0]?.value);
       return done(null, user);
@@ -34,7 +33,7 @@ passport.serializeUser((user, done) => done(null, user._id));
 passport.deserializeUser(async(id, done) => {
   try {
     const user = await findUser(id);
-    console.log("cookie parser",user)
+    // console.log("cookie parser",user)
     done(null, user)
   } catch (error) {
     done(error, null)

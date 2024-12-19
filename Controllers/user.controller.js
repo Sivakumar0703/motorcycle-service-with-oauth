@@ -2,7 +2,7 @@ import passport from "passport";
 import userModel from "../Models/userModel.js"
 import {hashPassword, hashCompare,createToken} from "./auth.controller.js";
 import nodemailer from "nodemailer";
-
+console.log(process.env.FRONTEND_URL)
 
 //userName,email,mobile,password,role
 
@@ -136,7 +136,7 @@ export const googleAuth = async(req,res) => {
 // google redirected
 export const googleRedirect = async(req,res) => {
     try {  
-        console.log('redirect google' , req.user);
+        // console.log('redirect google' , req.user);
         res.redirect(process.env.FRONTEND_URL)
     } catch (error) {
         res.status(500).json({message:"internal server error"})
@@ -150,6 +150,7 @@ export const getUserDataFromCookie = async(req,res) => {
     // console.log("cookie",req.cookies)
     try {
        const profile = req.user;   
+       console.log("*",req.user)
        if(!profile){
         return res.status(500).json({message:"not able to find user data..."});
        } 
@@ -157,7 +158,7 @@ export const getUserDataFromCookie = async(req,res) => {
         userName:profile.userName,
         email:profile.email
        }
-       res.status(200).json({success:true,message:"user data found",user})
+       res.status(200).json({success:true,message:"user data found",user,profile})
     } catch (error) {
         res.status(500).json({message:"internal server error",error})
     }
