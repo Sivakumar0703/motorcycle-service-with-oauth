@@ -26,7 +26,7 @@ app.use(session({
     secret:process.env.COOKIE_SECRET, 
     resave:false,
     saveUninitialized:false, 
-    cookie:{ maxAge: 24 * 60 * 60 * 1000 , secure:true , sameSite:'none' } // 24 hours in milli-second
+    cookie:{ maxAge: 24 * 60 * 60 * 1000 , secure:true , sameSite:'none', domain:'moto-health-care.onrender.com' , path:'/' } // 24 hours in milli-second
 }))
 
 app.use(passport.initialize())
