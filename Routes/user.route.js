@@ -12,7 +12,7 @@ userRouter.get('/auth/google' , passport.authenticate('google' ,
     {
         scope:['profile','email']
     })   , googleAuth );
-userRouter.get('/oauth/google/redirect' , passport.authenticate('google',{ failureRedirect: 'http://localhost:3000/login' , failureFlash:true })  , googleRedirect ); // takes the code and fetch data from google 
+userRouter.get('/oauth/google/redirect' , passport.authenticate('google',{ failureRedirect: `${process.env.FRONTEND_URL}/login` , failureFlash:true })  , googleRedirect ); // takes the code and fetch data from google 
 userRouter.post('/signup', register);
 userRouter.post('/login' , login );
 userRouter.get('/access_user_data' , getUserDataFromCookie );

@@ -137,7 +137,7 @@ export const googleAuth = async(req,res) => {
 export const googleRedirect = async(req,res) => {
     try {  
         console.log('redirect google' , req.user);
-        res.redirect('http://localhost:3000')
+        res.redirect(process.env.FRONTEND_URL)
     } catch (error) {
         res.status(500).json({message:"internal server error"})
     }
