@@ -28,11 +28,11 @@ app.use(session({
     saveUninitialized:false, 
     cookie:{ 
          maxAge: 24 * 60 * 60 * 1000 ,
-         httpOnly:true,
-         secure:true , 
-         sameSite:'none', 
-         domain:'moto-health-care.onrender.com' , 
-         path:'/'
+        //  httpOnly:true,
+        //  secure:true , 
+        //  sameSite:'none', 
+        //  domain:'moto-health-care.onrender.com' , 
+        //  path:'/'
         } // 24 hours in milli-second
 }))
 
