@@ -7,7 +7,8 @@ const userSchema = new mongoose.Schema({
     },
     
     email:{
-        type:String,        
+        type:String,   
+        unique:true     
     },
     
     mobile:{
@@ -32,6 +33,10 @@ const userSchema = new mongoose.Schema({
     },
 
     googleId:{
+        type:String
+    },
+
+    githubId:{
         type:String
     },
     

@@ -8,10 +8,11 @@ const pictureSchema = new mongoose.Schema({
     },
 
     email: {
-        type: String
+        type: String,
+        unique:true
     },
 
-    isGoogleImage:{
+    isFromSocialmedia:{
         type:Boolean,
         default:false
     }

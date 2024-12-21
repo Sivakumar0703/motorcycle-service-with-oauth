@@ -2,7 +2,8 @@ import imageModel from "../Models/imageModel.js"
 import fs from "fs"
 
 // get request
- export const getImage = async(req,res) => {
+export const getImage = async(req,res) => {
+    console.log('profile-image',req.user)
     try {
         const result = await imageModel.find();
         res.status(200).json({message:'data fetching done' , result})
@@ -18,7 +19,7 @@ export const uploadImage =  async(req,res) => {
         const data = imageModel({
             image : req.file.filename,
             email : req.body.email,
-            isGoogleImage:false
+            isFromSocialmedia:false
         })
         data.save()
         res.status(200).json({message:'success'})

@@ -1,4 +1,3 @@
-import passport from "passport";
 import userModel from "../Models/userModel.js"
 import {hashPassword, hashCompare,createToken} from "./auth.controller.js";
 import nodemailer from "nodemailer";
@@ -106,15 +105,17 @@ export const login = async (req, res) => {
 }
 
 
+
+
 // logout user
 export const logout = async(req,res) => {
     try {
-        req.logout((err) => {
+         req.logout((err) => {
             if(err){
                 res.status(500).json({message:"failed to logout"})
-            }
-            res.status(200).json({message:"logout successful"})
-        }) // from passport - removing the user data from cookie
+            }  
+            res.status(200).json({message:"logout successful"}) 
+        }) // from passport - removing the user data from session
     } catch (error) {
         console.log(error)
         res.status(500).json({message:"internal server error" , error})
@@ -123,9 +124,8 @@ export const logout = async(req,res) => {
 
 
 // google auth
-export const googleAuth = async(req,res) => {
+export const auth = async(req,res) => {
     try {
-        console.log('google auth controller')
         res.status(200).json({message:"please wait".toUpperCase()})
     } catch (error) {
         res.status(500).json({message:"authentication failed.try later".toUpperCase(),error})
@@ -134,9 +134,8 @@ export const googleAuth = async(req,res) => {
 
 
 // google redirected
-export const googleRedirect = async(req,res) => {
+export const redirect = async(req,res) => {
     try {  
-        // console.log('redirect google' , req.user);
         res.redirect(process.env.FRONTEND_URL)
     } catch (error) {
         res.status(500).json({message:"internal server error"})
@@ -146,11 +145,8 @@ export const googleRedirect = async(req,res) => {
 
 // access user data from cookie and pass it to client(browser)
 export const getUserDataFromCookie = async(req,res) => {
-    // console.log("user",req.user);
-    // console.log("cookie",req.cookies)
     try {
        const profile = req.user;   
-       console.log("*",req.user)
        if(!profile){
         return res.status(500).json({message:"not able to find user data..."});
        } 

@@ -1,12 +1,13 @@
 import userModel from "../Models/userModel.js";
 import imageModel from "../Models/imageModel.js";
 
-export const findOrCreateUser = async(profile) => {
+export const findOrCreateUser = async(profile , strategy) => { // strategy = ggogleId/githubId
     try {
+        const choosenStrategy  = strategy;
         if(!profile){
             throw new Error("not able to fetch user data from google")
         }
-        const user = await userModel.findOne({googleId:profile.id});
+        const user = await userModel.findOne({email:profile.emails[0]?.value});
         // check the user is already exists
         if(user){
            return user
@@ -15,7 +16,7 @@ export const findOrCreateUser = async(profile) => {
         const newUserData = {
             userName:profile.displayName,
             email:profile.emails[0]?.value,
-            googleId:profile.id
+            [choosenStrategy]:profile.id
         }
         const newUser = await userModel.create(newUserData);
         const profileImage = {
