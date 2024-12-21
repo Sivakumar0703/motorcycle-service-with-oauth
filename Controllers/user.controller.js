@@ -1,7 +1,7 @@
 import userModel from "../Models/userModel.js"
 import {hashPassword, hashCompare,createToken} from "./auth.controller.js";
 import nodemailer from "nodemailer";
-console.log(process.env.FRONTEND_URL)
+
 
 //userName,email,mobile,password,role
 
