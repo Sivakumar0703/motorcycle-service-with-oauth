@@ -136,6 +136,7 @@ export const auth = async(req,res) => {
 // google redirected
 export const redirect = async(req,res) => {
     try {  
+        console.log('response headers : ' , res.getHeaders())
         res.redirect(process.env.FRONTEND_URL)
     } catch (error) {
         res.status(500).json({message:"internal server error"})

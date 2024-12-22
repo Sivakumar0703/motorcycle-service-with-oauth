@@ -7,7 +7,7 @@ const userRouter = express.Router();
 
 userRouter.get('/' , getUser);
 userRouter.get('/auth/google' , passport.authenticate('google' , {scope:['profile','email']})   , auth );
-userRouter.get('/oauth/google/redirect' , passport.authenticate('google',{ failureRedirect: `${process.env.FRONTEND_URL}/login`})  , redirect ); // takes the code and fetch data from google 
+userRouter.get('/oauth/google/redirect' , passport.authenticate('google',{ failureRedirect: `${process.env.FRONTEND_URL}/login`}) , (req,res,next)=>{console.log('session-id: ',req.sessionID); next();}  , redirect ); // takes the code and fetch data from google 
 userRouter.post('/signup', register);
 userRouter.post('/login' , login );
 userRouter.get('/access_user_data' , getUserDataFromCookie );
