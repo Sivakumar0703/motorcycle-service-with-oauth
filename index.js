@@ -17,6 +17,13 @@ const port = process.env.PORT;
 
 
 
+app.use(express.json());
+
+app.use(cors({ 
+    origin: [process.env.FRONTEND_URL , 'http://localhost:3000'],
+    methods: 'GET,POST,PUT,PATCH,DELETE', 
+    credentials: true 
+}));
 
 app.use(session({ 
     secret:process.env.COOKIE_SECRET, 
@@ -24,27 +31,20 @@ app.use(session({
     saveUninitialized:false, 
     cookie:{ 
         maxAge: 24 * 60 * 60 * 1000 , // 24 hrs in milli-seconds
-        // httpOnly: true, 
-        // secure: true, 
-        // sameSite: 'None'
+        httpOnly: true, 
+        secure: true, 
+        sameSite: 'None'
     }
 }))
 
          
-
-
 app.use(passport.initialize())
 app.use(passport.session())
 
 
-app.use(express.json());
-app.use(cors({ 
-    origin: [process.env.FRONTEND_URL , 'http://localhost:3000'],
-    methods: 'GET,POST,PUT,PATCH,DELETE', 
-    credentials: true 
-}));
 
 
+// routes
 app.use('/users' , userRouter);
 app.use('/bikes' , bikeRouter);
 app.use('/bookings' , bookingRouter);
