@@ -137,7 +137,7 @@ export const auth = async(req,res) => {
 export const redirect = async(req,res) => {
     try {  
         console.log('redirect - session',req.session)
-        console.log('response headers : ' , res)
+        console.log('response headers : ' , res.getHeaders())
         res.redirect(process.env.FRONTEND_URL)
     } catch (error) {
         res.status(500).json({message:"internal server error"})
