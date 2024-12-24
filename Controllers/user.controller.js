@@ -136,6 +136,7 @@ export const auth = async(req,res) => {
 // google redirected
 export const redirect = async(req,res) => {
     try {  
+        console.log('redirect - session',req.session)
         console.log('response headers : ' , res)
         res.redirect(process.env.FRONTEND_URL)
     } catch (error) {
@@ -146,6 +147,7 @@ export const redirect = async(req,res) => {
 
 // access user data from cookie and pass it to client(browser)
 export const getUserDataFromCookie = async(req,res) => {
+    console.log('session',req.session);
     try {
        const profile = req.user;   
        if(!profile){
