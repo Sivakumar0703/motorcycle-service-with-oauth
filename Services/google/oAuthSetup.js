@@ -13,6 +13,8 @@ passport.use(
     },
     async function (accessToken, refreshToken, profile, done) {
       try {
+        console.log("access token",accessToken)
+        console.log("refresh token",refreshToken)
       // after converting the code from google to actual data
       const user = await findOrCreateUser(profile , 'googleId');
       // console.log(profile.displayName, profile.emails[0].value, profile.id,user._id , profile.photos[0]?.value);
