@@ -8,31 +8,11 @@ const userRouter = express.Router();
 userRouter.get('/' , getUser);
 
 // google 
-userRouter.get('/auth/google' , passport.authenticate('google' , {scope:['profile','email']})   , auth );
-
-userRouter.get(
-    '/oauth/google/redirect',
-    passport.authenticate('google', { failureRedirect: `${process.env.FRONTEND_URL}/login` }),
-    (req, res, next) => {
-        console.log('Session ID:', req.sessionID);
-        next();
-    },
-    (req, res) => {
-        const redirectUrl = req.session.returnTo || `${process.env.FRONTEND_URL}/`;
-        delete req.session.returnTo;
-        res.redirect(redirectUrl);
-    }
-);
-
-
-
-
-/*
+userRouter.get('/auth/google' , passport.authenticate('google'), auth );
 userRouter.get('/oauth/google/redirect' , 
     passport.authenticate('google',{ failureRedirect: `${process.env.FRONTEND_URL}/login`}) ,
-    //  (req,res,next)=>{console.log('session-id: ',req.sessionID); next();}  ,
-      redirect ); // takes the code and fetch data from google 
-*/
+    redirect 
+); // takes the code and fetch data from google 
 
 userRouter.post('/signup', register);
 userRouter.post('/login' , login );

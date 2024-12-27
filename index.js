@@ -21,7 +21,7 @@ app.use(express.json());
 
 app.use(cors({ 
     origin: process.env.FRONTEND_URL,
-    methods: 'GET,POST,PUT,PATCH,DELETE', 
+    methods: ['GET','POST','PUT','PATCH','DELETE'],
     credentials: true 
 }));
 
@@ -31,9 +31,9 @@ app.use(session({
     saveUninitialized:false, 
     cookie:{ 
         maxAge: 24 * 60 * 60 * 1000 , // 24 hrs in milli-seconds
-        HttpOnly: true, 
-        Secure: true, 
-        SameSite: "None"
+        httpOnly: true, 
+        secure: true, 
+        sameSite: "None"
     }
 }))
 
